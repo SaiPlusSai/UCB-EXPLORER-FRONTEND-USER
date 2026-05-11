@@ -28,9 +28,19 @@ export const premiosApi = {
 }
 
 export const feedbackApi = {
-  listar: () => api.get('/feedback/visitante'),
+
+  listar: () =>
+    api.get('/feedback/visitante'),
+
+  misRespuestas: () =>
+    api.get('/feedback/visitante/mis-respuestas'),
+
   responder: (respuestas) =>
-    api.post('/feedback/visitante/responder', { respuestas }),
+    api.post(
+      '/feedback/visitante/responder',
+      { respuestas }
+    ),
+
 }
 
 export const qrApi = {
