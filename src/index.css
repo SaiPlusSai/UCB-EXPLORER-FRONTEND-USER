@@ -116,7 +116,10 @@ a { color: inherit; text-decoration: none; }
 
 .tg-input:focus { border-color: var(--ucb-dorado); }
 .tg-input::placeholder { color: rgba(255, 255, 255, 0.65); }
-
+.tg-input option {
+  background-color: var(--ucb-azul-oscuro);
+  color: var(--ucb-blanco);
+}
 .tg-input--light {
   background: var(--ucb-gris-claro);
   border-color: var(--ucb-gris-claro);
