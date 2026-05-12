@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 .env.mobile
 estructura.txt
+.env.mobile
