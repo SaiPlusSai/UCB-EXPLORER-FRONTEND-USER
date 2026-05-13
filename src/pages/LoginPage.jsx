@@ -96,169 +96,100 @@ export default function LoginPage() {
 
   if (cargando) {
     return (
-      <div
-        className="app-shell"
-        style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <div
-          className="tg-loader"
-          style={{ margin: 'auto' }}
-        />
+      <div className="app-shell" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="tg-loader" />
       </div>
     )
   }
 
   return (
-    <div className="app-shell">
-      <div className="tg-page">
-
-        <div
-          style={{
-            textAlign: 'center',
-            padding: '20px 0 10px',
-          }}
-        >
-          <img
-            src={logoUcb}
-            alt="UCB"
-            style={{ height: 140 }}
-          />
-
-          <h1
-            style={{
-              color: '#fff',
-              margin: '12px 0 4px',
-            }}
-          >
-            UCB Explorer
-          </h1>
-
-          <p
-            className="tg-text-muted"
-            style={{ marginBottom: 18 }}
-          >
-            Bienvenido al Open House.
+    <div className="app-shell" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
+      <div className="tg-card" style={{ width: '100%', maxWidth: 440 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 36 }}>
+          <img src={logoUcb} alt="UCB" style={{ height: 100, filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4))', marginBottom: 20 }} />
+          <h1 style={{ fontSize: 28, fontWeight: 800, color: 'var(--ucb-blanco)', margin: '0 0 10px 0', letterSpacing: '-0.5px', textAlign: 'center' }}>UCB Explorer</h1>
+          <p className="tg-text-muted" style={{ textAlign: 'center', lineHeight: 1.5, margin: 0 }}>
+            Bienvenido al Open House.<br />
             Selecciona tu colegio y hasta 3 carreras de interés.
           </p>
         </div>
 
         <form onSubmit={submit}>
+          <div className="tg-label">
+            <span>Colegio</span>
+          </div>
 
-          <label className="tg-label">
-            Colegio
-          </label>
-
-          <select
-            className="tg-input"
-            value={colegioId}
-            onChange={(e) => setColegioId(e.target.value)}
-          >
-            <option value="">
-              — Selecciona tu colegio —
-            </option>
-
-            {colegios.map((c) => (
-              <option
-                key={c.id}
-                value={c.id}
-              >
-                {c.nombre}
-              </option>
-            ))}
-          </select>
-
-          <div style={{ marginTop: 22 }}>
-
-            <label className="tg-label">
-              Carreras de interés ({seleccion.length}/3)
-            </label>
-
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 8,
-              }}
+          <div style={{ position: 'relative', marginBottom: 32 }}>
+            <select
+              className="tg-input"
+              value={colegioId}
+              onChange={(e) => setColegioId(e.target.value)}
             >
-
-              {carreras.map((c) => {
-                const checked = seleccion.includes(c.id)
-                const idx = seleccion.indexOf(c.id)
-
-                return (
-                  <button
-                    type="button"
-                    key={c.id}
-                    onClick={() => toggleCarrera(c.id)}
-                    className="tg-list-item"
-                    style={{
-                      cursor: 'pointer',
-
-                      borderColor: checked
-                        ? 'var(--ucb-dorado)'
-                        : 'rgba(255,255,255,0.1)',
-
-                      background: checked
-                        ? 'rgba(255, 215, 0, 0.18)'
-                        : 'rgba(255,255,255,0.06)',
-
-                      color: '#fff',
-                      textAlign: 'left',
-                    }}
-                  >
-                    <span>{c.nombre}</span>
-
-                    {checked && (
-                      <span className="tg-chip">
-                        #{idx + 1}
-                      </span>
-                    )}
-                  </button>
-                )
-              })}
-
-              {carreras.length === 0 && (
-                <div className="tg-text-muted">
-                  No hay carreras activas todavía.
-                  Pide al administrador que cree algunas.
-                </div>
-              )}
-
+              <option value="">— Selecciona tu colegio —</option>
+              {colegios.map((c) => (
+                <option key={c.id} value={c.id}>{c.nombre}</option>
+              ))}
+            </select>
+            <div style={{ position: 'absolute', right: 20, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: 'rgba(255, 255, 255, 0.5)' }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </div>
+          </div>
+
+          <div className="tg-label" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span>Carreras de interés</span>
+            <span style={{ background: 'rgba(255, 255, 255, 0.1)', border: '1px solid rgba(255, 255, 255, 0.15)', padding: '3px 10px', borderRadius: 12, fontSize: 12, color: 'rgba(255, 255, 255, 0.9)', fontWeight: 600 }}>{seleccion.length} / 3</span>
+          </div>
+
+          <div className="tg-list" style={{ marginBottom: 36, maxHeight: 300, overflowY: 'auto', paddingRight: 6 }}>
+            {carreras.map((c) => {
+              const checked = seleccion.includes(c.id)
+              const idx = seleccion.indexOf(c.id)
+
+              return (
+                <button
+                  type="button"
+                  key={c.id}
+                  onClick={() => toggleCarrera(c.id)}
+                  className={`tg-list-item ${checked ? 'is-selected' : ''}`}
+                >
+                  <span>{c.nombre}</span>
+                  {checked && (
+                    <span className="tg-chip">
+                      {idx + 1}
+                    </span>
+                  )}
+                </button>
+              )
+            })}
+            
+            {carreras.length === 0 && (
+              <div className="tg-text-muted" style={{textAlign: 'center', padding: '20px 0'}}>
+                No hay carreras activas todavía.<br/>Pide al administrador que cree algunas.
+              </div>
+            )}
           </div>
 
           {error && (
             <div className="tg-error">
-              {error}
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <span>{error}</span>
             </div>
           )}
 
           <button
             type="submit"
             className="tg-btn"
-            style={{ marginTop: 20 }}
             disabled={enviando}
           >
-            {enviando
-              ? 'Iniciando…'
-              : 'Iniciar Open House'}
+            {enviando ? 'Iniciando…' : 'Iniciar Open House'}
+            {!enviando && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            )}
           </button>
 
-          <p
-            className="tg-text-muted"
-            style={{
-              textAlign: 'center',
-              marginTop: 20,
-              fontSize: 12,
-            }}
-          >
-            Fase preliminar — el ticket oficial
-            se integrará más adelante.
+          <p className="tg-text-muted" style={{ textAlign: 'center', marginTop: 24, fontSize: 13 }}>
+            Fase preliminar — el ticket oficial se integrará más adelante.
           </p>
-
         </form>
       </div>
     </div>

@@ -226,14 +226,14 @@ export default function TriviaPage() {
             >
               <div
                 style={{
-                  fontSize: 12,
-                  color:
-                    'var(--ucb-azul)',
+                  fontSize: 13,
+                  fontWeight: 600,
+                  color: 'var(--ucb-dorado)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px'
                 }}
               >
-                {p.carrera_nombre ||
-                  'General'}{' '}
-                · {p.puntos} pts
+                {p.carrera_nombre || 'General'} · {p.puntos} pts
               </div>
 
               <h3
@@ -263,23 +263,16 @@ export default function TriviaPage() {
                       key={o.id}
                       style={{
                         display: 'flex',
-                        gap: 10,
-                        padding: 10,
-                        border:
-                          '1px solid #e5e7eb',
+                        gap: 12,
+                        padding: '12px 16px',
+                        border: checked ? '1px solid var(--ucb-dorado)' : '1px solid rgba(255, 255, 255, 0.15)',
                         borderRadius: 12,
-                        background:
-                          checked
-                            ? '#fff7c0'
-                            : '#fff',
-                        cursor:
-                          respondida
-                            ? 'not-allowed'
-                            : 'pointer',
-                        opacity:
-                          respondida
-                            ? 0.85
-                            : 1,
+                        background: checked ? 'rgba(255, 215, 0, 0.1)' : 'rgba(255, 255, 255, 0.05)',
+                        color: checked ? 'var(--ucb-dorado)' : 'rgba(255, 255, 255, 0.9)',
+                        cursor: respondida ? 'not-allowed' : 'pointer',
+                        opacity: respondida ? 0.85 : 1,
+                        transition: 'all 0.2s',
+                        alignItems: 'center'
                       }}
                     >
                       <input
@@ -355,13 +348,7 @@ export default function TriviaPage() {
                       ? 'tg-success'
                       : 'tg-error'
                   }
-                  style={{
-                    color:
-                      feedback.correcta
-                        ? '#065f46'
-                        : '#7f1d1d',
-                    marginTop: 12,
-                  }}
+                  style={{ marginTop: 12 }}
                 >
                   {feedback.correcta
                     ? `✅ ¡Correcto! +${feedback.puntos_otorgados} puntos`
