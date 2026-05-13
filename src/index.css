@@ -523,6 +523,16 @@ a { color: inherit; text-decoration: none; }
   100% { transform: scale(1); opacity: 1; }
 }
 
+.tg-chip--label {
+  width: auto;
+  height: auto;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 .tg-chip--success { background: rgba(22, 163, 74, 0.2); color: #6ee7b7; box-shadow:none; border-radius:999px; width:auto; height:auto; padding:4px 10px; }
 .tg-chip--danger { background: rgba(217, 45, 32, 0.2); color: #fda4af; box-shadow:none; border-radius:999px; width:auto; height:auto; padding:4px 10px; }
 

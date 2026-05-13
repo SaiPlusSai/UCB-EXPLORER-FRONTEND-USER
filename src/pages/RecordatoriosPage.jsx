@@ -100,7 +100,7 @@ export default function RecordatoriosPage() {
                   <div style={{ fontWeight: 700 }}>
                     {r.titulo}
                     {r.creado_por_admin && (
-                      <span className="tg-chip" style={{ marginLeft: 6 }}>oficial</span>
+                      <span className="tg-chip tg-chip--label" style={{ marginLeft: 6 }}>oficial</span>
                     )}
                   </div>
                   {r.descripcion && (
