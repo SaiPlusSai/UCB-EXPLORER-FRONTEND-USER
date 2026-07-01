@@ -6,8 +6,9 @@ const NAV = [
   { to: '/', label: 'Inicio', icon: '🏠', end: true },
   { to: '/trivia', label: 'Trivia', icon: '🧠' },
   { to: '/qr', label: 'QR', icon: '📷' },
+  { to: '/store', label: 'Tienda', icon: '🛍️' },
+  { to: '/ticket', label: 'Ticket', icon: '🎫' },
   { to: '/premios', label: 'Premios', icon: '🎁' },
-  { to: '/recordatorios', label: 'Agenda', icon: '🗓️' },
 ]
 
 export default function AppLayout() {
@@ -40,7 +41,7 @@ export default function AppLayout() {
         <Outlet />
       </main>
 
-      <nav className="tg-bottom-bar">
+      <nav className="tg-bottom-bar tg-bottom-bar--6">
         {NAV.map((n) => (
           <NavLink
             key={n.to}

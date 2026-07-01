@@ -12,6 +12,7 @@
     "preview": "vite preview --host"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.13.5",
     "@yudiel/react-qr-scanner": "^2.5.1",
     "axios": "^1.16.0",
     "react": "^19.2.5",

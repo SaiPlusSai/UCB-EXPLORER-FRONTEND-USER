@@ -2,6 +2,9 @@ import { api } from './client'
 
 export const visitanteApi = {
   acceso: (data) => api.post('/visitantes/acceso', data),
+  accesoFamiliar: (data) => api.post('/visitantes/acceso-familiar', data),
+  accesoGoogle: (data) => api.post('/visitantes/acceso-google', data),
+  buscarTicket: (data) => api.post('/visitantes/buscar-ticket', data),
   me: () => api.get('/visitantes/me'),
 }
 
@@ -54,4 +57,15 @@ export const recordatoriosApi = {
   crear: (data) => api.post('/recordatorios/visitante', data),
   actualizar: (id, data) => api.put(`/recordatorios/visitante/${id}`, data),
   eliminar: (id) => api.delete(`/recordatorios/visitante/${id}`),
+}
+
+export const storeApi = {
+  listarProductos: (categoria) =>
+    api.get('/store/productos', { params: categoria ? { categoria } : {} }),
+  obtenerProducto: (id) => api.get(`/store/productos/${id}`),
+  listarCategorias: () => api.get('/store/categorias'),
+  reservar: (producto_id, cantidad = 1) =>
+    api.post('/store/reservar', { producto_id, cantidad }),
+  misReservas: () => api.get('/store/mis-reservas'),
+  cancelarReserva: (id) => api.put(`/store/reservas/${id}/cancelar`),
 }
